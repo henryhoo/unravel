@@ -13,10 +13,13 @@ function App() {
   return (
     <Root>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/dynamic">Dynamic</Link>
+        <Link to="/">Before Purchase</Link>
+        <br/>
+        <Link to="/after">After Purchase</Link>
+        <br/>
+        <Link to="/dispose">Want to Dispose</Link>
+        <br/>
+        <Link to="/types">Types of Fabrics</Link>
       </nav>
       <div className="content">
         <React.Suspense fallback={<em>Loading...</em>}>

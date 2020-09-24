@@ -2,6 +2,10 @@
   scroll-behavior: smooth;
 }
 
+:root{
+  --nav-width: 10%;
+}
+
 body {
   font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
     Helvetica, Arial, 'Lucida Grande', sans-serif;
@@ -22,16 +26,24 @@ img {
 }
 
 nav {
-  width: 100%;
-  background: #108db8;
+  height: 100%; /* 100% Full-height */
+  width: var(--nav-width);
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  padding-top: 10rem; /* Place content 60px from the top */
+
 }
 
 nav a {
   color: white;
   padding: 1rem;
-  display: inline-block;
+  display: block;
 }
 
 .content {
-  padding: 1rem;
+  padding: 10rem;
+  margin-left: var(--nav-width);
 }

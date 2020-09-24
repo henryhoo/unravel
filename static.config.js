@@ -9,12 +9,12 @@ export default {
 
     return [
       {
-        path: '/blog',
+        path: '/dispose',
         getData: () => ({
           posts,
         }),
         children: posts.map(post => ({
-          path: `/post/${post.id}`,
+          path: `/dispose/${post.id}`,
           template: 'src/containers/Post',
           getData: () => ({
             post,
