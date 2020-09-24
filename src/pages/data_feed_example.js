@@ -7,7 +7,7 @@ export default function Blog() {
   const { posts } = useRouteData()
   return (
     <div>
-      <h1>It's blog time.</h1>
+      <h1>Dispose</h1>
       <div>
         <a href="#bottom" id="top">
           Scroll to bottom!
@@ -18,7 +18,7 @@ export default function Blog() {
       <ul>
         {posts.map(post => (
           <li key={post.id}>
-            <Link to={`/blog/post/${post.id}/`}>{post.title}</Link>
+            <Link to={`/dispose/post/${post.id}/`}>{post.title}</Link>
           </li>
         ))}
       </ul>
