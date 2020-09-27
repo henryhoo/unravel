@@ -29,6 +29,8 @@ function App() {
           </Router>
         </React.Suspense>
       </div>
+      <div className="footer"> copyright 2020. All rights resevered</div>
+      
     </Root>
   )
 }
