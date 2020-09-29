@@ -1,8 +1,10 @@
 import React from 'react'
 import { Root, Routes, addPrefetchExcludes } from 'react-static'
 //
-import { Link, Router } from 'components/Router'
+import {Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
+
+import Nav from './Nav'
 
 import './app.css'
 
@@ -12,15 +14,9 @@ addPrefetchExcludes(['dynamic'])
 function App() {
   return (
     <Root>
-      <nav>
-        <Link to="/">Before Purchase</Link>
-        <br/>
-        <Link to="/after">After Purchase</Link>
-        <br/>
-        <Link to="/dispose">Want to Dispose</Link>
-        <br/>
-        <Link to="/types">Types of Fabrics</Link>
-      </nav>
+      <React.Suspense fallback={<em>Loading...</em>}>
+      <Nav></Nav>
+      </React.Suspense>
       <div className="content">
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
