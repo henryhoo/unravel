@@ -1,5 +1,8 @@
 import path from 'path'
 import axios from 'axios'
+import { createGenerateClassName } from '@material-ui/core/styles'
+
+const generateClassName = createGenerateClassName()
 
 export default {
   getSiteData: () => ({
@@ -38,6 +41,14 @@ export default {
       require.resolve('react-static-plugin-source-filesystem'),
       {
         location: path.resolve('./src/pages'),
+      },
+    ],
+    [
+      'react-static-plugin-jss',
+      {
+        providerProps: {
+          generateClassName,
+        },
       },
     ],
     require.resolve('react-static-plugin-reach-router'),

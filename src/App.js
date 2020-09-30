@@ -4,7 +4,7 @@ import { Root, Routes, addPrefetchExcludes } from 'react-static'
 import {Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
 
-import Nav from './Nav'
+import Nav from './components/Nav'
 
 import './app.css'
 
