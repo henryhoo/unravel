@@ -27,24 +27,6 @@ img {
   max-width: 100%;
 }
 
-nav {
-  height: 100% ; /* 100% Full-height */
-  width: var(--nav-width);
-  position: fixed; /* Stay in place */
-  z-index: 1;
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black*/
-  padding-top: 6rem; /* Place content 60px from the top */
-
-}
-
-nav a {
-  color: white;
-  padding: 2rem;
-  display: block;
-}
-
 .content {
   margin-left: var(--nav-width);
   height: 100%;
