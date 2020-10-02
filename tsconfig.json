@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-      "target": "es2015",
+      "target": "es6",
       "module": "esnext",
-      "lib": ["es2015", "dom"],
+      "lib": ["es6", "dom"],
       "moduleResolution": "node",
       "skipLibCheck": true,
       "isolatedModules": true,
@@ -12,6 +12,9 @@
       "sourceMap": true,
       "removeComments": false,
       "strict": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true
     }
   }
