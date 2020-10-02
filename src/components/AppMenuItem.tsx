@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
-import Collapse from '@material-ui/core/Collapse'
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Divider from "@material-ui/core/Divider";
+import Collapse from "@material-ui/core/Collapse";
 
-import IconExpandLess from '@material-ui/icons/ExpandLess'
-import IconExpandMore from '@material-ui/icons/ExpandMore'
+import IconExpandLess from "@material-ui/icons/ExpandLess";
+import IconExpandMore from "@material-ui/icons/ExpandMore";
 
 // React runtime PropTypes
 export const AppMenuItemPropTypes = {
@@ -18,31 +18,30 @@ export const AppMenuItemPropTypes = {
   link: PropTypes.string,
   Icon: PropTypes.elementType,
   items: PropTypes.array,
-}
+};
 
-type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>
-type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
+type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>;
+type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, "items">;
 // Improve child items declaration
 export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
-  items?: AppMenuItemProps[]
-}
+  items?: AppMenuItemProps[];
+};
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     menuItem: {},
-    menuItemIcon: {
-    },
-  }),
-)
+    menuItemIcon: {},
+  })
+);
 
 function AppMenuItem(props: AppMenuItemProps) {
-  const { name, Icon, items = [] } = props
-  const classes = useStyles()
-  const isExpandable = items && items.length > 0
-  const [open, setOpen] = React.useState(false)
+  const { name, Icon, items = [] } = props;
+  const classes = useStyles();
+  const isExpandable = items && items.length > 0;
+  const [open, setOpen] = React.useState(false);
 
   function handleClick() {
-    setOpen(!open)
+    setOpen(!open);
   }
 
   const MenuItemRoot = (
@@ -58,7 +57,7 @@ function AppMenuItem(props: AppMenuItemProps) {
       {isExpandable && !open && <IconExpandMore />}
       {isExpandable && open && <IconExpandLess />}
     </ListItem>
-  )
+  );
 
   const MenuItemChildren = isExpandable ? (
     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -69,16 +68,16 @@ function AppMenuItem(props: AppMenuItemProps) {
         ))}
       </List>
     </Collapse>
-  ) : null
+  ) : null;
 
   return (
     <>
       {MenuItemRoot}
       {MenuItemChildren}
     </>
-  )
+  );
 }
 
-AppMenuItem.propTypes = AppMenuItemPropTypes
+AppMenuItem.propTypes = AppMenuItemPropTypes;
 
-export default AppMenuItem
+export default AppMenuItem;

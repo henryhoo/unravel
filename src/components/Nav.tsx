@@ -1,10 +1,9 @@
+import type { AppMenuItemProps } from "./AppMenuItem";
+
 import React from "react";
-import { Link } from "./Router";
 import { useSiteData } from "react-static";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import IconDashboard from "@material-ui/icons/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
 import AppMenuItem from "./AppMenuItem";
@@ -25,25 +24,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Nav() : React.ReactElement {
-  const routeMap = useSiteData().routeMap;
+function Nav(): React.ReactElement {
+  const routes = useSiteData().routes;
   const classes = useStyles();
 
-  let itemList = [];
-  for (const root in routeMap) {
-    let items:({ name: string; })[] = [];
-    routeMap[root].forEach((child: string) => {
-      items.push(
-        {
-          name: child,
+  let itemList: any[] = [];
+  routes.forEach(
+    (rootItem: { itemName: string; urlPart: string; items: any[] }) => {
+      let items: AppMenuItemProps[] = [];
+      rootItem.items.forEach(
+        (childItem: { itemName: string; urlPart: string }) => {
+          items.push({
+            name: childItem.itemName,
+          });
         }
       );
-    });
 
-    itemList.push(
-      <AppMenuItem name={root} Icon={IconDashboard} items={items}></AppMenuItem>
-    );
-  }
+      itemList.push(
+        <AppMenuItem
+          name={rootItem.itemName}
+          Icon={IconDashboard}
+          items={items}
+        ></AppMenuItem>
+      );
+    }
+  );
 
   return (
     <Drawer
