@@ -8,6 +8,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import Collapse from "@material-ui/core/Collapse";
+import { navigate } from "./Router";
 
 import IconExpandLess from "@material-ui/icons/ExpandLess";
 import IconExpandMore from "@material-ui/icons/ExpandMore";
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 function AppMenuItem(props: AppMenuItemProps) {
-  const { name, Icon, items = [] } = props;
+  const { name, link, Icon, items = [] } = props;
   const classes = useStyles();
   const isExpandable = items && items.length > 0;
   const [open, setOpen] = React.useState(false);
@@ -52,7 +53,7 @@ function AppMenuItem(props: AppMenuItemProps) {
           <Icon />
         </ListItemIcon>
       )}
-      <ListItemText primary={name} inset={!Icon} />
+      <ListItemText primary={name} inset={!Icon} onClick={()=>{navigate(link)}} />
       {/* Display the expand menu if the item has children */}
       {isExpandable && !open && <IconExpandMore />}
       {isExpandable && open && <IconExpandLess />}

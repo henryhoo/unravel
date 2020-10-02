@@ -36,6 +36,7 @@ function Nav(): React.ReactElement {
         (childItem: { itemName: string; urlPart: string }) => {
           items.push({
             name: childItem.itemName,
+            link: "/" + rootItem.urlPart + "/" + childItem.urlPart,
           });
         }
       );
@@ -44,6 +45,7 @@ function Nav(): React.ReactElement {
         <AppMenuItem
           name={rootItem.itemName}
           Icon={IconDashboard}
+          link={"/" + rootItem.urlPart}
           items={items}
         ></AppMenuItem>
       );
