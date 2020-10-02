@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "components/Router";
+import { Link } from "./Router";
 import { useSiteData } from "react-static";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -8,40 +8,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import IconDashboard from "@material-ui/icons/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
 import AppMenuItem from "./AppMenuItem";
-
-function Nav() {
-  const routeMap = useSiteData().routeMap;
-  const classes = useStyles();
-
-  let itemList = [];
-  for (const root in routeMap) {
-    let items = [];
-    routeMap[root].forEach((child) => {
-      items.push(
-        {
-          name: child,
-        }
-      );
-    });
-
-    itemList.push(
-      <AppMenuItem name={root} icon={IconDashboard} items={items}></AppMenuItem>
-    );
-  }
-
-  return (
-    <Drawer
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <List component="nav" className={classes.appMenu} disablePadding>
-        {itemList}
-      </List>
-    </Drawer>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
@@ -58,5 +24,39 @@ const useStyles = makeStyles((theme) => ({
     width: "20%",
   },
 }));
+
+function Nav() : React.ReactElement {
+  const routeMap = useSiteData().routeMap;
+  const classes = useStyles();
+
+  let itemList = [];
+  for (const root in routeMap) {
+    let items:({ name: string; })[] = [];
+    routeMap[root].forEach((child: string) => {
+      items.push(
+        {
+          name: child,
+        }
+      );
+    });
+
+    itemList.push(
+      <AppMenuItem name={root} Icon={IconDashboard} items={items}></AppMenuItem>
+    );
+  }
+
+  return (
+    <Drawer
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+    >
+      <List component="nav" className={classes.appMenu} disablePadding>
+        {itemList}
+      </List>
+    </Drawer>
+  );
+}
 
 export default Nav;

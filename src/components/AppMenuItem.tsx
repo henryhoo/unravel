@@ -20,7 +20,22 @@ export const AppMenuItemPropTypes = {
   items: PropTypes.array,
 }
 
-function AppMenuItem(props) {
+type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>
+type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
+// Improve child items declaration
+export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
+  items?: AppMenuItemProps[]
+}
+
+const useStyles = makeStyles(theme =>
+  createStyles({
+    menuItem: {},
+    menuItemIcon: {
+    },
+  }),
+)
+
+function AppMenuItem(props: AppMenuItemProps) {
   const { name, Icon, items = [] } = props
   const classes = useStyles()
   const isExpandable = items && items.length > 0
@@ -65,13 +80,5 @@ function AppMenuItem(props) {
 }
 
 AppMenuItem.propTypes = AppMenuItemPropTypes
-
-const useStyles = makeStyles(theme =>
-  createStyles({
-    menuItem: {},
-    menuItemIcon: {
-    },
-  }),
-)
 
 export default AppMenuItem
