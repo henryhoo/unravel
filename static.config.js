@@ -19,16 +19,12 @@ export default {
       {
         itemName: "After Purchase",
         urlPart: "after",
-        items: [
-          { itemName: "ddd", urlPart: "ddd" },
-        ],
+        items: [{ itemName: "ddd", urlPart: "ddd" }],
       },
       {
         itemName: "Where to Dispose",
         urlPart: "dispose",
-        items: [
-          { itemName: "How to check", urlPart: "how_to_check" },
-        ],
+        items: [{ itemName: "How to check", urlPart: "how_to_check" }],
       },
       {
         itemName: "Fabric Types",
@@ -41,31 +37,21 @@ export default {
   }),
 
   getRoutes: async () => {
-    const { data: posts } = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-
     return [
       {
-        path: "/dispose",
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map((post) => ({
-          path: `/dispose/${post.id}`,
-          template: "src/containers/Post",
-          getData: () => ({
-            post,
-          }),
-        })),
+        path: "/404",
+        template: "./src/pages/404.js",
       },
     ];
   },
   plugins: [
     [
-      require.resolve("react-static-plugin-source-filesystem"),
+      "react-static-plugin-md-pages",
       {
-        location: path.resolve("./src/pages"),
+        location: "./contents", // path to markdown files' directory
+        pathPrefix: "", // prefix for added react-static routes (if any)
+        template: "./src/components/markdownTemplate.js", // path to React template component
+        remarkPlugins: [], // add additional remark plugins here
       },
     ],
     [
