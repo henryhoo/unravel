@@ -13,6 +13,7 @@
     "@material-ui/icons": "^4.9.1",
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
+    "markdown-navbar": "^1.4.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-jss": "^10.4.0",
@@ -23,6 +24,7 @@
     "react-static-plugin-sitemap": "^7.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@types/material-ui": "^0.21.8",
     "@types/react": "^16.9.50",
     "babel-eslint": "^10.0.2",
