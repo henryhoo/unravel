@@ -7,6 +7,7 @@ import List from "@material-ui/core/List";
 import IconDashboard from "@material-ui/icons/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
 import AppMenuItem from "./AppMenuItem";
+const mdPages = require("react-static-plugin-md-pages");
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
@@ -27,25 +28,27 @@ const useStyles = makeStyles((theme) => ({
 function Nav(): React.ReactElement {
   const routes = useSiteData().routes;
   const classes = useStyles();
-
+  const mdTreeRoot = mdPages.useMarkdownTree();
+  console.log(mdTreeRoot.children)
   let itemList: any[] = [];
-  routes.forEach(
-    (rootItem: { itemName: string; urlPart: string; items: any[] }) => {
+  mdTreeRoot.children.forEach(
+    (rootItem: { key: string; frontmatter: any; children: any[] }) => {
       let items: AppMenuItemProps[] = [];
-      rootItem.items.forEach(
-        (childItem: { itemName: string; urlPart: string }) => {
+      rootItem.children.forEach(
+        (childItem: { key: string; frontmatter: any; children: any[] }) => {
           items.push({
-            name: childItem.itemName,
-            link: "/" + rootItem.urlPart + "/" + childItem.urlPart,
+            name: childItem.key,
+            link: "/" + rootItem.key + "/" + childItem.key,
           });
         }
       );
 
       itemList.push(
         <AppMenuItem
-          name={rootItem.itemName}
+          name={rootItem.key}
+          key={rootItem.key}
           Icon={IconDashboard}
-          link={"/" + rootItem.urlPart}
+          link={"/" + rootItem.key}
           items={items}
         ></AppMenuItem>
       );
