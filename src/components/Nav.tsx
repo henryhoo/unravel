@@ -1,4 +1,4 @@
-import type { AppMenuItemProps } from "./AppMenuItem";
+import type { NestedMenuItemType } from "./AppMenuItem";
 
 import React from "react";
 import { useSiteData } from "react-static";
@@ -29,29 +29,27 @@ function Nav(): React.ReactElement {
   const routes = useSiteData().routes;
   const classes = useStyles();
   const mdTreeRoot = mdPages.useMarkdownTree();
-  console.log(mdTreeRoot.children)
+  console.log(mdTreeRoot.children);
   let itemList: any[] = [];
   mdTreeRoot.children.forEach(
     (rootItem: { key: string; frontmatter: any; children: any[] }) => {
-      let items: AppMenuItemProps[] = [];
+      let items: NestedMenuItemType[] = [];
       rootItem.children.forEach(
         (childItem: { key: string; frontmatter: any; children: any[] }) => {
           items.push({
             name: childItem.key,
             link: "/" + rootItem.key + "/" + childItem.key,
+            nestedItems: [],
           });
         }
       );
 
-      itemList.push(
-        <AppMenuItem
-          name={rootItem.key}
-          key={rootItem.key}
-          Icon={IconDashboard}
-          link={"/" + rootItem.key}
-          items={items}
-        ></AppMenuItem>
-      );
+      itemList.push({
+        name: rootItem.key,
+        link: "/" + rootItem.key,
+        Icon: IconDashboard,
+        nestedItems: items,
+      });
     }
   );
 
@@ -63,7 +61,7 @@ function Nav(): React.ReactElement {
       }}
     >
       <List component="nav" className={classes.appMenu} disablePadding>
-        {itemList}
+        <AppMenuItem items={itemList} key="root-menu"></AppMenuItem>
       </List>
     </Drawer>
   );
