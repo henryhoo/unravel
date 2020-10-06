@@ -6,7 +6,7 @@ title: 1
 
 
 
-
+# h1
 
 ## What does html and css do
 
@@ -17,12 +17,21 @@ title: 1
 * tag name
 * class name
 
-## Recommaned resource
+### H3-1
+
+# Recommaned resource
 * W3School
+### H3-2
+
+# Recommaned resource2
+
+# Recommaned resource3
 
 ## How to read code of other website
 Chrome developer tool
+### h3
 
+#### How to read code of other website 222
 
 
 

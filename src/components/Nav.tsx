@@ -29,7 +29,6 @@ function Nav(): React.ReactElement {
   const routes = useSiteData().routes;
   const classes = useStyles();
   const mdTreeRoot = mdPages.useMarkdownTree();
-  console.log(mdTreeRoot.children);
   let itemList: any[] = [];
   mdTreeRoot.children.forEach(
     (rootItem: { key: string; frontmatter: any; children: any[] }) => {
