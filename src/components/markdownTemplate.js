@@ -1,7 +1,8 @@
 import React from "react";
+import AppMenuItem from "./AppMenuItem";
+import {useEffect} from "react";
 
 const mdPages = require("react-static-plugin-md-pages");
-import AppMenuItem from "./AppMenuItem";
 
 export default ({ children }) => {
   const pageData = mdPages.useMarkdownPage();
@@ -40,6 +41,15 @@ export default ({ children }) => {
 
     return items;
   };
+
+  const currlURL = window.location.href;
+  useEffect(() => {
+    const urlParts = currlURL.split("#");
+    if (urlParts.length > 1) {
+      const anchor = urlParts[urlParts.length-1];
+      window.scrollTo(0, document.getElementById(anchor).offsetTop);
+    }
+  }, [currlURL]);
   return (
     <main>
       <AppMenuItem items={getMenuItems(headings, 2)}> </AppMenuItem>
