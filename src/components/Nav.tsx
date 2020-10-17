@@ -1,12 +1,12 @@
-import type { NestedMenuItemType } from "./AppMenuItem";
+import type { NestedMenuItemType } from "./NestedMenu";
 
 import React from "react";
-import { useSiteData } from "react-static";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import IconDashboard from "@material-ui/icons/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
-import AppMenuItem from "./AppMenuItem";
+import NestedMenu from "./NestedMenu";
 const mdPages = require("react-static-plugin-md-pages");
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +45,20 @@ function Nav(): React.ReactElement {
     }
   );
 
+  const getItemComponent = (item: NestedMenuItemType) => {
+    const { name, Icon } = item;
+    return (
+      <>
+        {!!Icon && (
+          <ListItemIcon>
+            <Icon />
+          </ListItemIcon>
+        )}
+        <ListItemText primary={name} inset={!Icon} />
+      </>
+    );
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -52,7 +66,11 @@ function Nav(): React.ReactElement {
         paper: classes.drawerPaper,
       }}
     >
-      <AppMenuItem items={itemList} key="root-menu"></AppMenuItem>
+      <NestedMenu
+        items={itemList}
+        getItemComponent={getItemComponent}
+        key="root-menu"
+      ></NestedMenu>
     </Drawer>
   );
 }

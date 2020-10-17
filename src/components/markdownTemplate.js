@@ -1,6 +1,6 @@
 import React from "react";
-import AppMenuItem from "./AppMenuItem";
-import {useEffect} from "react";
+import NestedMenu from "./NestedMenu";
+import { useEffect } from "react";
 
 const mdPages = require("react-static-plugin-md-pages");
 
@@ -11,7 +11,7 @@ export default ({ children }) => {
   const headings = pageData["headings"].filter((heading) => heading.depth > 1);
 
   const getMenuItems = (headings, depth) => {
-    if (headings.length === 0 || depth >6) {
+    if (headings.length === 0 || depth > 6) {
       return [];
     }
     const rootIndexs = [];
@@ -46,13 +46,13 @@ export default ({ children }) => {
   useEffect(() => {
     const urlParts = currlURL.split("#");
     if (urlParts.length > 1) {
-      const anchor = urlParts[urlParts.length-1];
+      const anchor = urlParts[urlParts.length - 1];
       window.scrollTo(0, document.getElementById(anchor).offsetTop);
     }
   }, [currlURL]);
   return (
     <main>
-      <AppMenuItem items={getMenuItems(headings, 2)}> </AppMenuItem>
+      <NestedMenu items={getMenuItems(headings, 2)}> </NestedMenu>
       {children}
     </main>
   );
