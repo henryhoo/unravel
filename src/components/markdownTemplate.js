@@ -1,10 +1,27 @@
 import React from "react";
 import NestedMenu from "./NestedMenu";
 import { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 
 const mdPages = require("react-static-plugin-md-pages");
 
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    position: "fixed",
+    top: "5%",
+    right: 0,
+    backgroundColor: "transparent",
+    borderLeft: 0,
+    color: theme.palette.primary.main,
+  },
+  contentCard: {},
+}));
+
 export default ({ children }) => {
+  const classes = useStyles();
   const pageData = mdPages.useMarkdownPage();
   const pagePath = "/" + pageData.path;
 
@@ -42,6 +59,12 @@ export default ({ children }) => {
     return items;
   };
 
+  const getItemComponent = (item) => {
+    const { name } = item;
+    return <Typography variant="body1">{name}</Typography>;
+  };
+
+  // handle scoll based on anchor
   const currlURL = window.location.href;
   useEffect(() => {
     const urlParts = currlURL.split("#");
@@ -52,8 +75,23 @@ export default ({ children }) => {
   }, [currlURL]);
   return (
     <main>
-      <NestedMenu items={getMenuItems(headings, 2)}> </NestedMenu>
       {children}
+      <Drawer
+        variant="permanent"
+        anchor="right"
+        classes={{
+          paper: classes.drawer,
+        }}
+      >
+        <Card className={classes.root} variant="outlined">
+          <Typography variant="h5">Contents</Typography>
+          <NestedMenu
+            items={getMenuItems(headings, 2)}
+            getItemComponent={getItemComponent}
+            key="page-nav"
+          ></NestedMenu>
+        </Card>
+      </Drawer>
     </main>
   );
 };

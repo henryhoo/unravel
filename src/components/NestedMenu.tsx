@@ -74,7 +74,7 @@ function NestedMenu(props: NestedMenuPropsType) {
       <Collapse in={isFocused} timeout="auto" unmountOnExit>
         <Divider />
         <List component="div" disablePadding>
-          <NestedMenu items={nestedItems} />
+          <NestedMenu items={nestedItems} getItemComponent={getItemComponent} />
         </List>
       </Collapse>
     ) : null;
