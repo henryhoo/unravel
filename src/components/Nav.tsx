@@ -14,9 +14,11 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     width: "20%",
     height: "100%",
-    background: "#535454",
-    color: "#fff",
+    background: theme.palette.background.default,
+    color: theme.palette.primary.main,
   },
+  menuItemIcon: {},
+  menuItemText: {},
 }));
 
 function Nav(): React.ReactElement {
@@ -50,11 +52,15 @@ function Nav(): React.ReactElement {
     return (
       <>
         {!!Icon && (
-          <ListItemIcon>
+          <ListItemIcon className={classes.menuItemIcon}>
             <Icon />
           </ListItemIcon>
         )}
-        <ListItemText primary={name} inset={!Icon} />
+        <ListItemText
+          primary={name}
+          inset={!Icon}
+          className={classes.menuItemText}
+        />
       </>
     );
   };
