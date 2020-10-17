@@ -17,16 +17,9 @@ const useStyles = makeStyles((theme) => ({
     background: "#535454",
     color: "#fff",
   },
-  appMenu: {
-    width: "100%",
-  },
-  menuItem: {
-    width: "20%",
-  },
 }));
 
 function Nav(): React.ReactElement {
-  const routes = useSiteData().routes;
   const classes = useStyles();
   const mdTreeRoot = mdPages.useMarkdownTree();
   let itemList: any[] = [];
@@ -59,9 +52,7 @@ function Nav(): React.ReactElement {
         paper: classes.drawerPaper,
       }}
     >
-      <List component="nav" className={classes.appMenu} disablePadding>
-        <AppMenuItem items={itemList} key="root-menu"></AppMenuItem>
-      </List>
+      <AppMenuItem items={itemList} key="root-menu"></AppMenuItem>
     </Drawer>
   );
 }

@@ -25,7 +25,12 @@ export type NestedMenuPropsType = {
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    menuItem: {},
+    root: {
+      width: "100%",
+    },
+    menuItem: {
+      width: "20%",
+    },
     menuItemIcon: {},
   })
 );
@@ -42,11 +47,7 @@ function NestedMenu(props: NestedMenuPropsType) {
     }
 
     const ItemRoot = (
-      <ListItem
-        button
-        className={classes.menuItem}
-        onClick={handleClick}
-      >
+      <ListItem button className={classes.menuItem} onClick={handleClick}>
         {!!Icon && (
           <ListItemIcon className={classes.menuItemIcon}>
             <Icon />
@@ -65,11 +66,7 @@ function NestedMenu(props: NestedMenuPropsType) {
     );
 
     const ItemChildren = isExpandable ? (
-      <Collapse
-        in={openIndex === index}
-        timeout="auto"
-        unmountOnExit
-      >
+      <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
         <Divider />
         <List component="div" disablePadding>
           <NestedMenu items={nestedItems} />
@@ -77,14 +74,18 @@ function NestedMenu(props: NestedMenuPropsType) {
       </Collapse>
     ) : null;
     return (
-      <div key = {link}>
+      <div key={link}>
         {ItemRoot}
         {ItemChildren}
-      </div >
+      </div>
     );
   });
 
-  return <>{MenuItems}</>;
+  return (
+    <List component="nav" className={classes.root} disablePadding>
+      {MenuItems}
+    </List>
+  );
 }
 
 export default NestedMenu;
