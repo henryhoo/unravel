@@ -1,10 +1,9 @@
 import React from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import createPalette from "@material-ui/core/styles/createPalette";
-import createTypography from "@material-ui/core/styles/createTypography";
 import { Router } from "./components/Router";
 import Nav from "./components/Nav";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 import "./app.css";
 
@@ -12,8 +11,21 @@ import "./app.css";
 addPrefetchExcludes(["dynamic"]);
 
 const rootTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    background: {},
+  },
   typography: {
-    fontSize: 12,
+    fontSize: 14,
+  },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        // h1: {
+        //   fontSize: 60,
+        // },
+      },
+    },
   },
 });
 
@@ -21,6 +33,7 @@ function App() {
   return (
     <Root>
       <ThemeProvider theme={rootTheme}>
+        <CssBaseline />
         <React.Suspense fallback={<em>Loading...</em>}>
           <Nav></Nav>
         </React.Suspense>

@@ -61,8 +61,31 @@ export default ({ children }) => {
 
   const getItemComponent = (item) => {
     const { name } = item;
-    return <Typography variant="body1">{name}</Typography>;
+    return (
+      <Typography variant="body1" color="textSecondary">
+        {name}
+      </Typography>
+    );
   };
+
+  const pageNavigation = (
+    <Drawer
+      variant="permanent"
+      anchor="right"
+      classes={{
+        paper: classes.drawer,
+      }}
+    >
+      <Card className={classes.root} variant="outlined">
+        <Typography variant="h5">Contents</Typography>
+        <NestedMenu
+          items={getMenuItems(headings, 2)}
+          getItemComponent={getItemComponent}
+          key="page-nav"
+        ></NestedMenu>
+      </Card>
+    </Drawer>
+  );
 
   // handle scoll based on anchor
   const currlURL = window.location.href;
@@ -73,25 +96,11 @@ export default ({ children }) => {
       window.scrollTo(0, document.getElementById(anchor).offsetTop);
     }
   }, [currlURL]);
+
   return (
     <main>
       {children}
-      <Drawer
-        variant="permanent"
-        anchor="right"
-        classes={{
-          paper: classes.drawer,
-        }}
-      >
-        <Card className={classes.root} variant="outlined">
-          <Typography variant="h5">Contents</Typography>
-          <NestedMenu
-            items={getMenuItems(headings, 2)}
-            getItemComponent={getItemComponent}
-            key="page-nav"
-          ></NestedMenu>
-        </Card>
-      </Drawer>
+      {pageNavigation}
     </main>
   );
 };

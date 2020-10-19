@@ -2,7 +2,7 @@ import type { NestedMenuItemType } from "./NestedMenu";
 
 import React from "react";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import IconDashboard from "@material-ui/icons/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,11 +14,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     width: "20%",
     height: "100%",
-    background: theme.palette.background.default,
-    color: theme.palette.primary.main,
   },
   menuItemIcon: {},
-  menuItemText: {},
 }));
 
 function Nav(): React.ReactElement {
@@ -56,11 +53,9 @@ function Nav(): React.ReactElement {
             <Icon />
           </ListItemIcon>
         )}
-        <ListItemText
-          primary={name}
-          inset={!Icon}
-          className={classes.menuItemText}
-        />
+        <Typography variant="body1" color="textSecondary">
+          {name}
+        </Typography>
       </>
     );
   };
