@@ -43,12 +43,11 @@ export default ({ children }) => {
     }
 
     const items = [];
-    rootIndexs.forEach((index, i) => {
-      const rootHeading = headings[index];
-      const childrenHeadings = headings.slice(
-        Math.min(index + 1, headings.length),
-        i < rootIndexs.length ? rootIndexs[i + 1] + 1 : headings.length + 1
-      );
+    rootIndexs.forEach((rootIndex, i) => {
+      const rootHeading = headings[rootIndex];
+      const childrenStart = rootIndex + 1;
+      const childrenEnd = rootIndexs[i + 1];
+      const childrenHeadings = headings.slice(childrenStart, childrenEnd);
       items.push({
         name: rootHeading.value,
         link: pagePath + "#" + rootHeading.slug,
