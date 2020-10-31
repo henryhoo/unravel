@@ -28,7 +28,7 @@ function Nav(): React.ReactElement {
       rootItem.children.forEach(
         (childItem: { key: string; frontmatter: any; children: any[] }) => {
           items.push({
-            name: childItem.key,
+            name: childItem.frontmatter.title || childItem.key,
             link: "/" + rootItem.key + "/" + childItem.key,
             nestedItems: [],
           });
@@ -36,7 +36,7 @@ function Nav(): React.ReactElement {
       );
 
       itemList.push({
-        name: rootItem.key,
+        name: rootItem.frontmatter.title || rootItem.key,
         link: "/" + rootItem.key,
         Icon: IconDashboard,
         nestedItems: items,
