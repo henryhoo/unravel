@@ -1,5 +1,5 @@
 ---
-title: "2"
+title: "Git For Beginners"
 ---
 
 # git-for-begineers-with-real-example

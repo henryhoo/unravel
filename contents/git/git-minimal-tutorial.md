@@ -1,5 +1,5 @@
 ---
-title: "2"
+title: "Git Minial Tutorial"
 ---
 
 # Git Minimal Startup Guide
@@ -8,7 +8,7 @@ title: "2"
 
 It took me more than one year to fully master git. Before that, I can't agree more on one of the quote in [this YCombinator post](https://news.ycombinator.com/item?id=4200492):
 
-> Can we please stop pretending that Git is simple and easy to learn? If that were true then there wouldn't be "Learn how to use Git in <X> minutes!" posts every other day.
+> Can we please stop pretending that Git is simple and easy to learn? If that were true then there wouldn't be "Learn how to use Git in X minutes!" posts every other day.
 
 Truth is, **the core idea behind Git is not complicated. However it can still be hard to get started and mastered**. :)
 
