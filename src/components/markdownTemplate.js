@@ -100,11 +100,9 @@ export default ({ children }) => {
 
   return (
     <main>
-      <Box paddingTop={5} paddingLeft ={2} paddingRight = {10}>
-      {children}
+      <Box paddingTop={5} paddingLeft={2} paddingRight={10}>
+        {children}
       </Box>
-
-  
       {pageNavigation}
     </main>
   );
