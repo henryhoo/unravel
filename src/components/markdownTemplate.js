@@ -1,5 +1,6 @@
 import React from "react";
 import NestedMenu from "./NestedMenu";
+import Box from "@material-ui/core/Box";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -98,7 +99,9 @@ export default ({ children }) => {
 
   return (
     <main>
-      {children}
+      <Box paddingTop={5} paddingLeft={2} paddingRight={10}>
+        {children}
+      </Box>
       {pageNavigation}
     </main>
   );

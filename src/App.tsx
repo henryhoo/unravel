@@ -11,6 +11,7 @@ import "./app.css";
 addPrefetchExcludes(["dynamic"]);
 
 const rootTheme = createMuiTheme({
+  spacing: 8,
   palette: {
     type: "dark",
     background: {},
