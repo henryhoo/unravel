@@ -15,13 +15,15 @@ const useStyles = makeStyles((theme) => ({
     top: "5%",
     right: 0,
     backgroundColor: "transparent",
+    width: "18%",
     borderLeft: 0,
     color: theme.palette.primary.main,
   },
   contentCard: {},
 }));
 
-export default ({ children }) => {
+export default (page) => {
+  const pageContent = page.children
   const classes = useStyles();
   const pageData = mdPages.useMarkdownPage();
   const pagePath = "/" + pageData.path;
@@ -99,8 +101,8 @@ export default ({ children }) => {
 
   return (
     <main>
-      <Box paddingTop={5} paddingLeft={2} paddingRight={10}>
-        {children}
+      <Box paddingTop={5} paddingLeft={2} paddingRight={10} width="82%">
+        {pageContent}
       </Box>
       {pageNavigation}
     </main>
